@@ -8,7 +8,9 @@ import chat from "@/assets/icons/chat.svg";
 
 const NAV_LINK_CLASS = "flex align-middle items-center mb-5";
 
-function isActiveClass({ isActive }: { isActive: boolean }) {
+type IsActiveClassProps = { isActive: boolean };
+
+function isActiveClass({ isActive }: IsActiveClassProps) {
   return {
     border: isActive ? "2px solid #942EA5" : "2px solid transparent",
     borderRadius: isActive ? "10px" : "10px",

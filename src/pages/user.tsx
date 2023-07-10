@@ -1,4 +1,4 @@
-export function Home() {
+export function User() {
   return (
     <>
       <h1>Home Page</h1>

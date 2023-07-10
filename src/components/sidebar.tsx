@@ -1,10 +1,21 @@
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+import logo from "@/assets/images/logo.png";
 
-import user from "../assets/icons/user.svg";
-import projects from "../assets/icons/projects.svg";
-import schedule from "../assets/icons/schedule.svg";
-import chat from "../assets/icons/chat.svg";
+import user from "@/assets/icons/user.svg";
+import projects from "@/assets/icons/projects.svg";
+import schedule from "@/assets/icons/schedule.svg";
+import chat from "@/assets/icons/chat.svg";
+
+const NAV_LINK_CLASS = "flex align-middle items-center mb-5";
+
+function isActiveClass({ isActive }: { isActive: boolean }) {
+  return {
+    border: isActive ? "2px solid #942EA5" : "2px solid transparent",
+    borderRadius: isActive ? "10px" : "10px",
+    padding: isActive ? "10px" : "10px",
+    transition: "border-color 0.2s ease-in-out",
+  };
+}
 
 export function Sidebar() {
   return (
@@ -22,55 +33,27 @@ export function Sidebar() {
       </div>
       <nav className="m-4">
         <ul className="text-white">
-          <NavLink
-            className="flex align-middle items-center mb-5"
-            to="/users"
-            style={({ isActive }) => ({
-              border: isActive ? "2px solid #942EA5" : "2px solid transparent",
-              borderRadius: isActive ? "10px" : "10px",
-              padding: isActive ? "10px" : "10px",
-              transition: "border-color 0.2s ease-in-out",
-            })}
-          >
+          <NavLink className={NAV_LINK_CLASS} to="/users" style={isActiveClass}>
             <img src={user} alt="" className="h-8 w-1/2" />
             Equipe
           </NavLink>
           <NavLink
-            className="flex align-middle items-center mb-5"
+            className={NAV_LINK_CLASS}
             to="/projects"
-            style={({ isActive }) => ({
-              border: isActive ? "2px solid #942EA5" : "2px solid transparent",
-              borderRadius: isActive ? "10px" : "10px",
-              padding: isActive ? "10px" : "10px",
-              transition: "border-color 0.2s ease-in-out",
-            })}
+            style={isActiveClass}
           >
             <img src={projects} alt="" className="h-8 w-1/2" />
             Projetos
           </NavLink>
           <NavLink
-            className="flex align-middle items-center mb-5"
+            className={NAV_LINK_CLASS}
             to="/schedule"
-            style={({ isActive }) => ({
-              border: isActive ? "2px solid #942EA5" : "2px solid transparent",
-              borderRadius: isActive ? "10px" : "10px",
-              padding: isActive ? "10px" : "10px",
-              transition: "border-color 0.2s ease-in-out",
-            })}
+            style={isActiveClass}
           >
             <img src={schedule} alt="" className="h-8 w-1/2" />
             Calendário
           </NavLink>
-          <NavLink
-            className="flex align-middle items-center mb-5"
-            to="/chat"
-            style={({ isActive }) => ({
-              border: isActive ? "2px solid #942EA5" : "2px solid transparent",
-              borderRadius: isActive ? "10px" : "10px",
-              padding: isActive ? "10px" : "10px",
-              transition: "border-color 0.2s ease-in-out",
-            })}
-          >
+          <NavLink className={NAV_LINK_CLASS} to="/chat" style={isActiveClass}>
             <img src={chat} alt="" className="h-7 w-1/2" />
             Chat
           </NavLink>

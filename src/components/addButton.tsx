@@ -1,14 +1,14 @@
-import addbutton from "../assets/icons/addbutton.svg";
+import addbutton from "@/assets/icons/addbutton.svg";
 
 interface AddButtonProps {
-  openModal: () => void;
+  onClick: () => void;
 }
 
-export function AddButton({ openModal }: AddButtonProps) {
+export function AddButton({ onClick }: AddButtonProps) {
   return (
     <div
       className="flex cursor-pointer transition-transform duration-200 hover:scale-110 justify-center"
-      onClick={openModal}
+      onClick={onClick}
     >
       <img src={addbutton} alt="" />
     </div>

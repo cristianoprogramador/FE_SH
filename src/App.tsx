@@ -4,9 +4,7 @@ import { AppRoutes } from "./router";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex h-screen">
-        <AppRoutes />
-      </div>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

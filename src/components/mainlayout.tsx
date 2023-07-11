@@ -4,13 +4,13 @@ type MainLayoutProps = {
   children?: React.ReactNode;
 };
 
-export const MainLayout = (props: MainLayoutProps): React.JSX.Element => {
+export function MainLayout(props: MainLayoutProps): React.JSX.Element {
   const { children } = props;
 
   return (
-    <div className="flex">
+    <div className="flex h-screen flex-grow overflow-y-auto">
       <Sidebar />
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow overflow-y-auto">{children}</div>
     </div>
   );
-};
+}

@@ -9,16 +9,7 @@ interface UserCardProps {
 }
 
 export function UserCard(props: UserCardProps) {
-  const [showModal, setShowModal] = useState(false);
   const { data } = props;
-
-  const handleMouseEnter = () => {
-    setShowModal(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowModal(false);
-  };
 
   return (
     <Card className="h-52 w-48">

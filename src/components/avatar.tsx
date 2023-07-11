@@ -1,19 +1,18 @@
-import { CSSProperties } from "react";
+import { twJoin } from "tailwind-merge";
 
 interface AvatarProps {
   imageUrl: string;
-  style?: CSSProperties;
+  className?: string;
 }
 
 export function Avatar(props: AvatarProps) {
-  const { imageUrl, style } = props;
+  const { imageUrl, className } = props;
 
   return (
     <img
       src={imageUrl}
       alt="userPhoto"
-      className="rounded-full border-white border-2"
-      style={style}
+      className={twJoin("avatar", className)}
     />
   );
 }

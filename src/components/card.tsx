@@ -1,17 +1,19 @@
-import { CSSProperties } from "react";
+import { twJoin } from "tailwind-merge";
 
 type CardProps = {
   children?: React.ReactNode;
-  style?: CSSProperties;
+  className?: string;
 };
 
 export function Card(props: CardProps): React.JSX.Element {
-  const { children, style } = props;
+  const { children, className } = props;
 
   return (
     <div
-      className="bg-userCardBG rounded-2xl flex flex-col justify-center items-center shadow-md relative"
-      style={style}
+      className={twJoin(
+        "bg-userCardBG rounded-2xl flex flex-col justify-center items-center shadow-md relative",
+        className
+      )}
     >
       {children}
     </div>

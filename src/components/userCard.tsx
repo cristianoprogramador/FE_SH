@@ -8,8 +8,8 @@ export function UserCard(props: UserCardProps) {
   const imageUrl = data.imageUrl ?? "";
 
   return (
-    <Card style={{ height: 208, width: 192 }}>
-      <Avatar imageUrl={imageUrl} style={{ height: 64, width: 64 }} />
+    <Card className="h-52 w-48">
+      <Avatar imageUrl={imageUrl} className="h-16 w-16" />
       <div className="mt-4 font-semibold gap-1 text-center">
         <div>{data.name}</div>
         <div>{data.position}</div>

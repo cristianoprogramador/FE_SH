@@ -28,7 +28,7 @@ export function Sidebar() {
       <div className="flex flex-col items-center mt-6 text-white gap-1">
         <Avatar
           imageUrl="https://avatars.githubusercontent.com/u/102186472?v=4"
-          style={{ height: 96, width: 96 }}
+          className="h-24 w-24"
         />
         <div>
           <div>Cristiano Silva</div>

@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'sideBar-Top': '#804CBA',
+        'sideBar-Bottom': '#001846',
+        "boxShadow": "0px 0px 48px 0px rgba(0, 0, 0, 0.53)",
+        "userCardBG": "#C78DF4"
+      },
+      gradientColorStopPositions: {
+        38: '38%',
+      },
+      boxShadow: {
+        '3xl': "0px 0px 48px 0px rgba(0, 0, 0, 0.53)",
+      }
+    }
   },
   plugins: [],
 }

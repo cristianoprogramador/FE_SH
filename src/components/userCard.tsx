@@ -47,6 +47,8 @@ export function UserCard(props: UserCardProps) {
           </ToolTip>
         </div>
       </div>
+
+      {showModal && <ToolTip projects={data.projects} showModal={showModal} />}
     </Card>
   );
 }

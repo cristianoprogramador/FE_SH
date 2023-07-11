@@ -1,17 +1,15 @@
-import projectsCardIcon from "../assets/icons/projectsCardIcon.svg";
+import projectsCardIcon from "@/assets/icons/projectsCardIcon.svg";
 import { UserCardProps } from "@/interfaces/userInterface";
+import { Avatar } from "./avatar";
+import { Card } from "./card";
 
 export function UserCard(props: UserCardProps) {
   const { data } = props;
   const imageUrl = data.imageUrl ?? "";
 
   return (
-    <div className="bg-userCardBG w-48 h-52 rounded-2xl flex flex-col justify-center items-center shadow-md relative">
-      <img
-        src={imageUrl}
-        alt="userPhoto"
-        className="rounded-full h-16 w-16 border-white border-2"
-      />
+    <Card style={{ height: 208, width: 192 }}>
+      <Avatar imageUrl={imageUrl} style={{ height: 64, width: 64 }} />
       <div className="mt-4 font-semibold gap-1 text-center">
         <div>{data.name}</div>
         <div>{data.position}</div>
@@ -22,6 +20,6 @@ export function UserCard(props: UserCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 }

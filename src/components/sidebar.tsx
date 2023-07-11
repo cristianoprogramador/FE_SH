@@ -10,7 +10,9 @@ const NAV_LINK_CLASS = "flex align-middle items-center mb-5";
 
 type IsActiveClassProps = { isActive: boolean };
 
-function isActiveClass({ isActive }: IsActiveClassProps) {
+function isActiveClass(props: IsActiveClassProps) {
+  const { isActive } = props;
+
   return {
     border: isActive ? "2px solid #942EA5" : "2px solid transparent",
     borderRadius: isActive ? "10px" : "10px",

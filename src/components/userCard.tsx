@@ -21,6 +21,14 @@ export function UserCard(props: UserCardProps) {
     setShowModal(false);
   };
 
+  const handleMouseEnter = () => {
+    setShowModal(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowModal(false);
+  };
+
   return (
     <Card className="h-52 w-48">
       <Avatar imageUrl={data?.imageUrl} className="h-16 w-16" />

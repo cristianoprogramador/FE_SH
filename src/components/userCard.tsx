@@ -1,7 +1,6 @@
 import projectsCardIcon from "@/assets/icons/projectsCardIcon.svg";
 import { Avatar } from "./avatar";
 import { Card } from "./card";
-
 import { ToolTip } from "./tooltip";
 
 import { User } from "@/interfaces/userInterface";
@@ -48,6 +47,8 @@ export function UserCard(props: UserCardProps) {
           </ToolTip>
         </div>
       </div>
+
+      {showModal && <ToolTip projects={data.projects} showModal={showModal} />}
     </Card>
   );
 }

@@ -8,17 +8,9 @@ interface UserCardProps {
   data: User;
 }
 
-export interface User {
-  id: number;
-  name: string;
-  birthDate?: string;
-  position?: string;
-  salary?: number;
-  projects?: string[];
-  imageUrl?: string;
-}
+import { User } from "@/interfaces/userInterface";
 
-export interface UserCardProps {
+interface UserCardProps {
   data: User;
 }
 

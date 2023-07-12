@@ -10,24 +10,7 @@ interface UserCardProps {
 }
 
 export function UserCard(props: UserCardProps) {
-  const [showModal, setShowModal] = useState(false);
   const { data } = props;
-
-  const handleMouseEnter = () => {
-    setShowModal(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowModal(false);
-  };
-
-  const handleMouseEnter = () => {
-    setShowModal(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowModal(false);
-  };
 
   return (
     <Card className="h-52 w-48">
@@ -55,8 +38,6 @@ export function UserCard(props: UserCardProps) {
           </ToolTip>
         </div>
       </div>
-
-      {showModal && <ToolTip projects={data.projects} showModal={showModal} />}
     </Card>
   );
 }

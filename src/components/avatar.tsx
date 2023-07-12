@@ -1,7 +1,7 @@
 import { twJoin } from "tailwind-merge";
 
 interface AvatarProps {
-  imageUrl: string;
+  imageUrl?: string;
   className?: string;
 }
 

@@ -1,15 +1,27 @@
 import projectsCardIcon from "@/assets/icons/projectsCardIcon.svg";
-import { UserCardProps } from "@/interfaces/userInterface";
 import { Avatar } from "./avatar";
 import { Card } from "./card";
 
+export interface User {
+  id: number;
+  name: string;
+  birthDate?: string;
+  position?: string;
+  salary?: number;
+  projects?: string[];
+  imageUrl?: string;
+}
+
+export interface UserCardProps {
+  data: User;
+}
+
 export function UserCard(props: UserCardProps) {
   const { data } = props;
-  const imageUrl = data.imageUrl ?? "";
 
   return (
     <Card className="h-52 w-48">
-      <Avatar imageUrl={imageUrl} className="h-16 w-16" />
+      <Avatar imageUrl={data?.imageUrl} className="h-16 w-16" />
       <div className="mt-4 font-semibold gap-1 text-center">
         <div>{data.name}</div>
         <div>{data.position}</div>

@@ -8,6 +8,20 @@ interface UserCardProps {
   data: User;
 }
 
+export interface User {
+  id: number;
+  name: string;
+  birthDate?: string;
+  position?: string;
+  salary?: number;
+  projects?: string[];
+  imageUrl?: string;
+}
+
+export interface UserCardProps {
+  data: User;
+}
+
 export function UserCard(props: UserCardProps) {
   const { data } = props;
 

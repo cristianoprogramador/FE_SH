@@ -7,6 +7,8 @@ import schedule from "@/assets/icons/schedule.svg";
 import chat from "@/assets/icons/chat.svg";
 import { Avatar } from "./avatar";
 
+const imageUrl = "https://avatars.githubusercontent.com/u/102186472?v=4";
+
 const NAV_LINK_CLASS = "flex align-middle items-center mb-5";
 
 type IsActiveClassProps = { isActive: boolean };
@@ -27,7 +29,7 @@ export function Sidebar() {
     <div className="w-48 bg-gradient-to-b from-sideBar-Top from-0% to-sideBar-Bottom to-35% shadow-3xl flex flex-col justify-between text-center">
       <div className="flex flex-col items-center mt-6 text-white gap-1">
         <Avatar
-          imageUrl="https://avatars.githubusercontent.com/u/102186472?v=4"
+          imageUrl={imageUrl === undefined ? user : imageUrl}
           className="h-24 w-24"
         />
         <div>

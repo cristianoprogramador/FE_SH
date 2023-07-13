@@ -14,6 +14,8 @@ export function Avatar(props: AvatarProps) {
 
   const avatarWithExternalClasses = twJoin(BASE_CLASSES, className);
 
+  console.log(imageUrl);
+
   return (
     <img
       src={avatarImg}

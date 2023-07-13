@@ -12,7 +12,7 @@ export function Avatar(props: AvatarProps) {
     <img
       src={imageUrl}
       alt="userPhoto"
-      className={twJoin("avatar", className)}
+      className={twJoin("border-white border-2 rounded-full", className)}
     />
   );
 }

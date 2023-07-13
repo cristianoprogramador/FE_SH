@@ -10,6 +10,8 @@ export function Avatar(props: AvatarProps) {
   const { imageUrl, className } = props;
   const avatarImg = imageUrl ?? userDefaultImg;
 
+  console.log(imageUrl);
+
   return (
     <img
       src={avatarImg}

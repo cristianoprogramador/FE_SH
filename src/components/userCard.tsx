@@ -1,9 +1,7 @@
 import projectsCardIcon from "@/assets/icons/projectsCardIcon.svg";
 import { Avatar } from "./avatar";
 import { Card } from "./card";
-
 import { ToolTip } from "./tooltip";
-
 import { User } from "@/interfaces/userInterface";
 
 interface UserCardProps {

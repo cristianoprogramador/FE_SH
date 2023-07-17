@@ -5,17 +5,13 @@ type CardProps = {
   className?: string;
 };
 
+const BASE_CLASSES =
+  "bg-cardBG rounded-2xl flex flex-col justify-center items-center shadow-md";
+
 export function Card(props: CardProps): React.JSX.Element {
   const { children, className } = props;
 
-  return (
-    <div
-      className={twJoin(
-        "bg-userCardBG rounded-2xl flex flex-col justify-center items-center shadow-md relative",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+  const cardWithExternalClasses = twJoin(BASE_CLASSES, className);
+
+  return <div className={cardWithExternalClasses}>{children}</div>;
 }

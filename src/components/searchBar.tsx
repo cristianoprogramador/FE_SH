@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 interface SearchBarProps {

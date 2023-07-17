@@ -28,10 +28,7 @@ export function Sidebar() {
   return (
     <div className="w-48 bg-gradient-to-b from-sideBar-Top from-0% to-sideBar-Bottom to-35% shadow-3xl flex flex-col justify-between text-center">
       <div className="flex flex-col items-center mt-6 text-white gap-1">
-        <Avatar
-          imageUrl={imageUrl === undefined ? user : imageUrl}
-          className="h-24 w-24"
-        />
+        <Avatar imageUrl={imageUrl} className="h-24 w-24" />
         <div>
           <div>Cristiano Silva</div>
           <div>(Admin)</div>

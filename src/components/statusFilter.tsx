@@ -8,11 +8,11 @@ interface OptionStyle {
   inactiveClass: string;
 }
 
-interface SwitchProps {
+interface StatusFilterProps {
   onStatusChange: (status: string) => void;
 }
 
-export function Switch({ onStatusChange }: SwitchProps) {
+export function StatusFilter({ onStatusChange }: StatusFilterProps) {
   const [activeOption, setActiveOption] = useState("Todos");
 
   const handleOptionClick = (optionStyle: OptionStyle) => {

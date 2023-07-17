@@ -3,7 +3,7 @@ import { AddButton } from "@/components/addButton";
 import { UserCard } from "@/components/userCard";
 import { SearchBar } from "@/components/searchBar";
 import { User as UserInterface } from "@/interfaces/userInterface";
-import { Switch } from "@/components/switch";
+import { StatusFilter } from "@/components/statusFilter";
 
 // MOCK DATA WILL BE REMOVE AFTER INTEGRATION WITH BACKEND
 const userData = [
@@ -130,7 +130,7 @@ export function User() {
     <div className="flex flex-col h-full items-center">
       <div className="flex flex-row mt-9 justify-center gap-8 w-full">
         <SearchBar onSearchTermChange={handleSearchTermChange} />
-        <Switch onStatusChange={handleStatusUserChange} />
+        <StatusFilter onStatusChange={handleStatusUserChange} />
       </div>
       <div className="mt-9 pb-3 gap-8 align-middle items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         <AddButton onClick={openModal} />

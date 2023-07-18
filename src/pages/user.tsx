@@ -235,12 +235,12 @@ export function User() {
             </div>
             <div className="flex flex-row justify-around">
               <Button
-                text="Fechar"
+                children="Fechar"
                 onClick={closeManageUserModal}
                 className="bg-ButtonBgRed text-white font-semibold"
               />
               <Button
-                text="Salvar"
+                children="Salvar"
                 type="submit"
                 className="bg-ButtonBgGreen text-white font-semibold"
               />

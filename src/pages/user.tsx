@@ -40,7 +40,7 @@ const userData = [
 ];
 
 export function User() {
-  const [showModal, setShowModal] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [usersData, setUsersData] = useState<UserInterface[]>(userData);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -62,7 +62,7 @@ export function User() {
   }, [searchTerm, usersData]);
 
   const openModal = () => {
-    setShowModal(true);
+    setModalVisible(true);
   };
 
   const handleSearchTermChange = (term: string) => {

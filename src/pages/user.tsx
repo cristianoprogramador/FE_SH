@@ -129,6 +129,12 @@ export function User() {
           <UserCard data={user} key={user.id} />
         ))}
       </div>
+      {showModal && (
+        <Modal closeModal={closeModal}>
+          <div>Modal</div>
+          <button onClick={closeModal}>Close X</button>
+        </Modal>
+      )}
     </div>
   );
 }

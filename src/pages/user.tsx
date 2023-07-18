@@ -129,7 +129,6 @@ export function User() {
           <UserCard data={user} key={user.id} />
         ))}
       </div>
-      {showModal && <CreateUserModal closeModal={closeModal} />}
     </div>
   );
 }

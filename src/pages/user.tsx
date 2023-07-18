@@ -166,6 +166,10 @@ export function User() {
     console.log(data);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="flex flex-col h-full items-center">
       <div className="flex flex-row mt-9 justify-center gap-8 w-full">

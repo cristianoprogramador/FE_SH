@@ -4,6 +4,7 @@ import { UserCard } from "@/components/userCard";
 import { SearchBar } from "@/components/searchBar";
 import { User as UserInterface } from "@/interfaces/userInterface";
 import { StatusFilter, StatusFilterOptions } from "@/components/statusFilter";
+import { CreateUserModal } from "@/components/createUserModal";
 
 // MOCK DATA WILL BE REMOVE AFTER INTEGRATION WITH BACKEND
 const userData: UserInterface[] = [
@@ -109,6 +110,10 @@ export function User() {
     setManageUserModalVisibility(true);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className="flex flex-col h-full items-center">
       <div className="flex flex-row mt-9 justify-center gap-8 w-full">
@@ -124,6 +129,7 @@ export function User() {
           <UserCard data={user} key={user.id} />
         ))}
       </div>
+      {showModal && <CreateUserModal closeModal={closeModal} />}
     </div>
   );
 }

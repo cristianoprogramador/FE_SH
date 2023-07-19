@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AddButton } from "@/components/addButton";
 import { UserCard } from "@/components/userCard";
 import { SearchBar } from "@/components/searchBar";
@@ -41,16 +41,13 @@ const userData = [
 
 export function User() {
   const [showModal, setShowModal] = useState(false);
-  const [data, setData] = useState<UserInterface[]>(userData);
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const handleSearchTermChange = (term: string) => {
-    if (term.length > 0) {
-      const filteredUsers = data.filter((user) => {
-        const lowerCaseTerm = term.toLowerCase();
+  const [searchTerm, setSearchTerm] = useState("");
+  const usersData = useMemo(() => {
+    if (searchTerm.length === 0) {
+      return userData;
+    } else {
+      const lowerCaseTerm = searchTerm.toLowerCase();
+      return userData.filter((user) => {
         return (
           user.name.toLowerCase().includes(lowerCaseTerm) ||
           user.position?.toLowerCase().includes(lowerCaseTerm) ||
@@ -59,10 +56,15 @@ export function User() {
           )
         );
       });
-      setData(filteredUsers);
-    } else {
-      setData(userData);
     }
+  }, [searchTerm]);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const handleSearchTermChange = (term: string) => {
+    setSearchTerm(term);
   };
 
   return (
@@ -70,7 +72,7 @@ export function User() {
       <SearchBar className="mt-9" onSearchTermChange={handleSearchTermChange} />
       <div className="mt-9 pb-3 gap-8 align-middle items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         <AddButton onClick={openModal} />
-        {data.map((user) => (
+        {usersData.map((user) => (
           <UserCard data={user} key={user.id} />
         ))}
       </div>

@@ -10,7 +10,7 @@ const BASE_CLASSES = `p-2 border border-gray-500 rounded-lg bg-transparent text-
 export function SearchBar(props: SearchBarProps) {
   const { className, onSearchTermChange } = props;
 
-  const cardWithExternalClasses = twJoin(BASE_CLASSES, className);
+  const inputWithExternalClasses = twJoin(BASE_CLASSES, className);
 
   const handleSearchTermChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -23,7 +23,7 @@ export function SearchBar(props: SearchBarProps) {
     <input
       type="text"
       placeholder="Pesquisar..."
-      className={cardWithExternalClasses}
+      className={inputWithExternalClasses}
       onChange={handleSearchTermChange}
     />
   );

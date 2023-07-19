@@ -170,6 +170,44 @@ export function User() {
     setShowModal(false);
   };
 
+  const projects = [
+    "Create your Burger",
+    "Laughing and Learning",
+    "My Life Dashboard",
+  ];
+
+  const schema = yup.object().shape({
+    name: yup.string().required("O nome é obrigatório"),
+    email: yup
+      .string()
+      .email("Digite um e-mail válido")
+      .required("O e-mail é obrigatório"),
+    position: yup.string().required("O cargo é obrigatório"),
+    imageUrl: yup.string().url("Digite uma URL válida"),
+    salary: yup
+      .number()
+      .transform((value) =>
+        Number.isNaN(value) ? undefined : (value as number | undefined)
+      )
+      .required("O salário é obrigatório"),
+    projects: yup.array().of(yup.string().oneOf(projects)),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      projects: [],
+    },
+  });
+
+  const onSubmit = (data: UserForm) => {
+    console.log(data);
+  };
+
   return (
     <div className="flex flex-col h-full items-center">
       <div className="flex flex-row mt-9 justify-center gap-8 w-full">

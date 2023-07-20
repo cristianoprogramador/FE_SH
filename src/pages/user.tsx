@@ -41,13 +41,13 @@ const userData = [
 
 export function User() {
   const [showModal, setShowModal] = useState(false);
+  const [usersData, setUsersData] = useState<UserInterface[]>(userData);
   const [searchTerm, setSearchTerm] = useState("");
-  const usersData = useMemo(() => {
-    if (searchTerm.length === 0) {
-      return userData;
-    } else {
+
+  const filteredUsers = useMemo(() => {
+    if (searchTerm.length > 0) {
       const lowerCaseTerm = searchTerm.toLowerCase();
-      return userData.filter((user) => {
+      return usersData.filter((user) => {
         return (
           user.name.toLowerCase().includes(lowerCaseTerm) ||
           user.position?.toLowerCase().includes(lowerCaseTerm) ||
@@ -56,8 +56,10 @@ export function User() {
           )
         );
       });
+    } else {
+      return usersData;
     }
-  }, [searchTerm]);
+  }, [searchTerm, usersData]);
 
   const openModal = () => {
     setShowModal(true);
@@ -72,7 +74,7 @@ export function User() {
       <SearchBar className="mt-9" onSearchTermChange={handleSearchTermChange} />
       <div className="mt-9 pb-3 gap-8 align-middle items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         <AddButton onClick={openModal} />
-        {usersData.map((user) => (
+        {filteredUsers.map((user) => (
           <UserCard data={user} key={user.id} />
         ))}
       </div>

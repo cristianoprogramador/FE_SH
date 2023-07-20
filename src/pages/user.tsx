@@ -92,8 +92,6 @@ export function User() {
     setUserStatus(status);
   };
 
-  console.log(userStatus);
-
   const doesUserMatchSearchTerm = (
     user: UserInterface,
     term: string,
@@ -123,8 +121,6 @@ export function User() {
   const openModal = () => {
     setShowModal(true);
   };
-
-  console.log(filteredUsers);
 
   return (
     <div className="flex flex-col h-full items-center">

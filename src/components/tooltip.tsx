@@ -11,6 +11,11 @@ const BASE_CLASSES = `absolute bottom-0 bg-purple-800 border border-purple-500 r
 
 const HOVER_CLASSES = `opacity-100`;
 
+const BASE_STYLES = {
+  right: -40,
+  marginRight: 3,
+};
+
 export function ToolTip(props: ToolTipProps) {
   const { content, children, className } = props;
   const [hovered, setHovered] = useState(false);
@@ -34,13 +39,7 @@ export function ToolTip(props: ToolTipProps) {
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {children}
       </div>
-      <div
-        className={tooltipWithExternalClasses}
-        style={{
-          right: -40,
-          marginRight: 3,
-        }}
-      >
+      <div className={tooltipWithExternalClasses} style={BASE_STYLES}>
         {content}
       </div>
     </div>

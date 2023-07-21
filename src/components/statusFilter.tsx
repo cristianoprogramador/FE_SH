@@ -1,67 +1,69 @@
-import { useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-type Status = "ACTIVE" | "INACTIVE" | "ALL";
+export type StatusFilterOptions = "ACTIVE" | "INACTIVE" | "ALL";
+
+type OptionLabel = "Ativos" | "Todos" | "Inativos";
 
 interface OptionStyle {
-  label: string;
-  status: string;
+  label: OptionLabel;
+  status: StatusFilterOptions;
   activeClass: string;
-  inactiveClass: string;
 }
 
 interface StatusFilterProps {
-  onStatusChange: (status: string) => void;
+  onStatusChange: (status: StatusFilterOptions) => void;
+  currentStatus: StatusFilterOptions;
 }
 
-const BASE_CLASSES = `py-2 px-4 rounded-lg focus:outline-none transition-colors duration-300`;
+const BASE_ACTIVE_CLASS = "text-white font-bold";
+
+const BASE_CLASSES = `py-2 px-4 rounded-lg focus:outline-none transition-colors duration-300 text-gray-700 p-2`;
 
 const OPTIONS = [
   {
-    label: "Ativo",
-    status: "Active",
-    activeClass: "bg-green-500 text-white font-bold",
-    inactiveClass: "text-gray-700 p-2",
+    label: "Ativos",
+    status: "ACTIVE",
+    activeClass: "bg-green-500",
   },
   {
     label: "Todos",
-    status: "All",
-    activeClass: "bg-gray-500 text-white font-bold",
-    inactiveClass: "text-gray-700 p-2",
+    status: "ALL",
+    activeClass: "bg-gray-500",
   },
   {
     label: "Inativos",
-    status: "Inactive",
-    activeClass: "bg-red-500 text-white font-bold",
-    inactiveClass: "text-gray-700 p-2",
+    status: "INACTIVE",
+    activeClass: "bg-red-500",
   },
-];
+] satisfies OptionStyle[];
 
 export function StatusFilter(props: StatusFilterProps) {
-  const { onStatusChange } = props;
-  const [activeOption, setActiveOption] = useState("Todos");
+  const { onStatusChange, currentStatus } = props;
 
   const handleOptionClick = (optionStyle: OptionStyle) => {
-    setActiveOption(optionStyle.label);
     onStatusChange(optionStyle.status);
   };
 
   return (
     <div className="flex items-center justify-around bg-gray-200 rounded-lg w-64">
-      {OPTIONS.map((option) => (
-        <button
-          key={option.label}
-          className={twJoin(
-            BASE_CLASSES,
-            activeOption === option.label
-              ? option.activeClass
-              : option.inactiveClass
-          )}
-          onClick={() => handleOptionClick(option)}
-        >
-          {option.label}
-        </button>
-      ))}
+      {OPTIONS.map((option) => {
+        const currentClasses = twJoin(
+          BASE_CLASSES,
+          currentStatus === option.status
+            ? twJoin(BASE_ACTIVE_CLASS, option.activeClass)
+            : ""
+        );
+
+        return (
+          <button
+            key={option.label}
+            className={currentClasses}
+            onClick={() => handleOptionClick(option)}
+          >
+            {option.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

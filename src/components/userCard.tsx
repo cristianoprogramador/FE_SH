@@ -1,4 +1,5 @@
 import projectsCardIcon from "@/assets/icons/projectsCardIcon.svg";
+import editUser from "@/assets/icons/editUser.svg";
 import { Avatar } from "./avatar";
 import { Card } from "./card";
 import { ToolTip } from "./tooltip";
@@ -12,8 +13,15 @@ export function UserCard(props: UserCardProps) {
   const { data } = props;
 
   return (
-    <Card className="h-52 w-48">
+    <Card className="h-52 w-48 relative">
+      {/* <div className="flex flex-row"> */}
       <Avatar imageUrl={data?.imageUrl} className="h-16 w-16" />
+      <img
+        src={editUser}
+        alt="edit user"
+        className="absolute right-3 top-3 cursor-pointer h-6 w-6"
+      />
+      {/* </div> */}
       <div className="mt-4 font-semibold gap-1 text-center">
         <div>{data.name}</div>
         <div>{data.position}</div>

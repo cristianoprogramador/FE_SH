@@ -75,13 +75,14 @@ const userData = [
 
 export function User() {
   const [usersData, setUsersData] = useState<UserInterface[]>(userData);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchBarTerm, setSearchBarTerm] = useState("");
   const [selectedStatusFilter, setSelectedStatusFilter] =
     useState<StatusFilterOptions>("ALL");
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [manageUserModalVisibility, setManageUserModalVisibility] =
+    useState(false);
 
   const handleSearchTermChange = (term: string) => {
-    setSearchQuery(term);
+    setSearchBarTerm(term);
   };
 
   const handleStatusUserChange = (status: StatusFilterOptions) => {
@@ -90,7 +91,7 @@ export function User() {
 
   const filteredUsers = useMemo(() => {
     return usersData.filter((user) => {
-      const lowerCaseTerm = searchQuery.toLowerCase();
+      const lowerCaseTerm = searchBarTerm.toLowerCase();
 
       return (
         (selectedStatusFilter === "ALL" ||
@@ -102,10 +103,10 @@ export function User() {
           ))
       );
     });
-  }, [searchQuery, usersData, selectedStatusFilter]);
+  }, [searchBarTerm, usersData, selectedStatusFilter]);
 
   const openModal = () => {
-    setModalVisible(true);
+    setManageUserModalVisibility(true);
   };
 
   return (

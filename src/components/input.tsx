@@ -1,18 +1,17 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 import { twJoin } from "tailwind-merge";
 
-interface FormInputProps {
+type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   register: UseFormRegisterReturn;
   error?: string;
   className?: string;
-  placeholder?: string;
-}
+};
 
 const INPUT_CLASSES = "border border-gray-300 p-2 rounded";
 
-export function Input(props: FormInputProps) {
-  const { label, register, error, className, placeholder } = props;
+export function Input(props: InputProps) {
+  const { label, register, error, className, ...restOfInputProps } = props;
   const hasError = error != null;
 
   const inputWithExternalClasses = twJoin(INPUT_CLASSES, className);
@@ -24,7 +23,7 @@ export function Input(props: FormInputProps) {
         <input
           {...register}
           className={inputWithExternalClasses}
-          placeholder={placeholder}
+          {...restOfInputProps}
         />
       </div>
       {hasError ? (

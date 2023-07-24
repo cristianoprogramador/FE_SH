@@ -13,6 +13,7 @@ const INPUT_CLASSES = "border border-gray-300 p-2 rounded";
 
 export function Input(props: FormInputProps) {
   const { label, register, error, className, placeholder } = props;
+  const hasError = error != null;
 
   const inputWithExternalClasses = twJoin(INPUT_CLASSES, className);
 
@@ -26,7 +27,9 @@ export function Input(props: FormInputProps) {
           placeholder={placeholder}
         />
       </div>
-      {error && <span className="text-red-500 font-bold">{error}</span>}
+      {hasError ? (
+        <span className="text-red-500 font-bold">{error}</span>
+      ) : null}
     </div>
   );
 }

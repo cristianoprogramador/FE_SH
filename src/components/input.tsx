@@ -1,12 +1,17 @@
 import { UseFormRegisterReturn } from "react-hook-form";
 import { twJoin } from "tailwind-merge";
 
-type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+interface InputCustomProps {
   label: string;
   register: UseFormRegisterReturn;
   error?: string;
-  className?: string;
-};
+}
+
+type InputProps = Pick<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "className" | "placeholder" | "value" | "min" | "type"
+> &
+  InputCustomProps;
 
 const INPUT_CLASSES = "border border-gray-300 p-2 rounded";
 

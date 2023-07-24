@@ -6,5 +6,5 @@ export interface User {
   salary?: number;
   projects?: string[];
   imageUrl?: string;
-  status?: string;
+  status: string;
 }

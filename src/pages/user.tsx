@@ -68,33 +68,33 @@ const userData = [
     position: "Designer UI/UX",
     salary: 4000,
     status: "Inactive",
-
     projects: ["My Life Dashboard"],
     imageUrl: "https://i.imgur.com/v76rx7g.jpg",
   },
 ];
 
 export function User() {
-  const [showModal, setShowModal] = useState(false);
   const [usersData, setUsersData] = useState<UserInterface[]>(userData);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [userStatus, setUserStatus] = useState<StatusFilterOptions>("ALL");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedStatusFilter, setSelectedStatusFilter] =
+    useState<StatusFilterOptions>("ALL");
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleSearchTermChange = (term: string) => {
-    setSearchTerm(term);
+    setSearchQuery(term);
   };
 
   const handleStatusUserChange = (status: StatusFilterOptions) => {
-    setUserStatus(status);
+    setSelectedStatusFilter(status);
   };
 
   const filteredUsers = useMemo(() => {
     return usersData.filter((user) => {
-      const lowerCaseTerm = searchTerm.toLowerCase();
+      const lowerCaseTerm = searchQuery.toLowerCase();
 
       return (
-        (userStatus === "ALL" ||
-          user.status?.toLowerCase() === userStatus.toLowerCase()) &&
+        (selectedStatusFilter === "ALL" ||
+          user.status?.toLowerCase() === selectedStatusFilter.toLowerCase()) &&
         (user.name.toLowerCase().includes(lowerCaseTerm) ||
           user.position?.toLowerCase().includes(lowerCaseTerm) ||
           user.projects?.some((project) =>
@@ -102,10 +102,10 @@ export function User() {
           ))
       );
     });
-  }, [searchTerm, usersData, userStatus]);
+  }, [searchQuery, usersData, selectedStatusFilter]);
 
   const openModal = () => {
-    setShowModal(true);
+    setModalVisible(true);
   };
 
   return (
@@ -114,7 +114,7 @@ export function User() {
         <SearchBar onSearchTermChange={handleSearchTermChange} />
         <StatusFilter
           onStatusChange={handleStatusUserChange}
-          currentStatus={userStatus}
+          currentStatus={selectedStatusFilter}
         />
       </div>
       <div className="mt-9 pb-3 gap-8 align-middle items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">

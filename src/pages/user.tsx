@@ -1,10 +1,10 @@
-import { useMemo, useState } from "react";
 import { AddButton } from "@/components/addButton";
-import { UserCard } from "@/components/userCard";
+import { Modal } from "@/components/modal";
 import { SearchBar } from "@/components/searchBar";
-import { User as UserInterface } from "@/interfaces/userInterface";
 import { StatusFilter, StatusFilterOptions } from "@/components/statusFilter";
-import { CreateUserModal } from "@/components/createUserModal";
+import { UserCard } from "@/components/userCard";
+import { User as UserInterface } from "@/interfaces/userInterface";
+import { useMemo, useState } from "react";
 
 // MOCK DATA WILL BE REMOVE AFTER INTEGRATION WITH BACKEND
 const userData: UserInterface[] = [
@@ -110,8 +110,8 @@ export function User() {
     setManageUserModalVisibility(true);
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeManageUserModal = () => {
+    setManageUserModalVisibility(false);
   };
 
   return (
@@ -129,10 +129,10 @@ export function User() {
           <UserCard data={user} key={user.id} />
         ))}
       </div>
-      {showModal && (
-        <Modal closeModal={closeModal}>
+      {manageUserModalVisibility && (
+        <Modal closeModal={closeManageUserModal}>
           <div>Modal</div>
-          <button onClick={closeModal}>Close X</button>
+          <button onClick={closeManageUserModal}>Close X</button>
         </Modal>
       )}
     </div>

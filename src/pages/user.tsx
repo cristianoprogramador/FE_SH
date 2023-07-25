@@ -6,7 +6,7 @@ import { User as UserInterface } from "@/interfaces/userInterface";
 import { StatusFilter, StatusFilterOptions } from "@/components/statusFilter";
 
 // MOCK DATA WILL BE REMOVE AFTER INTEGRATION WITH BACKEND
-const userData = [
+const userData: UserInterface[] = [
   {
     id: 1,
     name: "Cristiano Silva",
@@ -95,7 +95,7 @@ export function User() {
 
       return (
         (selectedStatusFilter === "ALL" ||
-          user.status?.toLowerCase() === selectedStatusFilter.toLowerCase()) &&
+          user.status.toLowerCase() === selectedStatusFilter.toLowerCase()) &&
         (user.name.toLowerCase().includes(lowerCaseTerm) ||
           user.position?.toLowerCase().includes(lowerCaseTerm) ||
           user.projects?.some((project) =>

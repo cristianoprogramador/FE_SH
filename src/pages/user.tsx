@@ -6,7 +6,7 @@ import { User as UserInterface } from "@/interfaces/userInterface";
 import { StatusFilter, StatusFilterOptions } from "@/components/statusFilter";
 
 // MOCK DATA WILL BE REMOVE AFTER INTEGRATION WITH BACKEND
-const userData = [
+const userData: UserInterface[] = [
   {
     id: 1,
     name: "Cristiano Silva",
@@ -95,7 +95,7 @@ export function User() {
 
       return (
         (selectedStatusFilter === "ALL" ||
-          user.status?.toLowerCase() === selectedStatusFilter.toLowerCase()) &&
+          user.status.toLowerCase() === selectedStatusFilter.toLowerCase()) &&
         (user.name.toLowerCase().includes(lowerCaseTerm) ||
           user.position?.toLowerCase().includes(lowerCaseTerm) ||
           user.projects?.some((project) =>
@@ -105,7 +105,7 @@ export function User() {
     });
   }, [searchBarTerm, usersData, selectedStatusFilter]);
 
-  const openModal = () => {
+  const openManageUserModal = () => {
     setManageUserModalVisibility(true);
   };
 
@@ -119,7 +119,7 @@ export function User() {
         />
       </div>
       <div className="mt-9 pb-3 gap-8 align-middle items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        <AddButton onClick={openModal} />
+        <AddButton onClick={openManageUserModal} />
         {filteredUsers.map((user) => (
           <UserCard data={user} key={user.id} />
         ))}

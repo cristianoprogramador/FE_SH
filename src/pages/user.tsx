@@ -129,12 +129,12 @@ export function User() {
           <UserCard data={user} key={user.id} />
         ))}
       </div>
-      {manageUserModalVisibility && (
+      {manageUserModalVisibility ? (
         <Modal closeModal={closeManageUserModal}>
           <div>Modal</div>
           <button onClick={closeManageUserModal}>Close X</button>
         </Modal>
-      )}
+      ) : null}
     </div>
   );
 }

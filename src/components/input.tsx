@@ -9,7 +9,7 @@ interface InputCustomProps {
 
 type InputProps = Pick<
   React.InputHTMLAttributes<HTMLInputElement>,
-  "className" | "placeholder" | "min" | "type"
+  "className" | "placeholder" | "min" | "type" | "defaultValue"
 > &
   InputCustomProps;
 

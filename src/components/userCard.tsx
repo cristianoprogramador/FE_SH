@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UserForm } from "@/pages/user";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { StatusSwitch } from "./statusSwitch";
 
 interface UserCardProps {
   data: User;
@@ -27,16 +28,12 @@ export function UserCard(props: UserCardProps) {
   const { data } = props;
   const [manageUserModalVisibility, setManageUserModalVisibility] =
     useState(false);
+  const [status, setStatus] = useState(data.status);
 
-  const [formData, setFormData] = useState<UserForm>({
-    name: data.name,
-    email: data.email,
-    birthDate: data.birthDate,
-    position: data.position,
-    imageUrl: data.imageUrl,
-    salary: data.salary,
-    projects: data.projects ?? [],
-  });
+  const handleStatusChange = (newStatus: string) => {
+    setStatus(newStatus);
+  };
+
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
   const openEditUserModal = () => {
@@ -63,6 +60,7 @@ export function UserCard(props: UserCardProps) {
       )
       .required("O salário é obrigatório"),
     projects: yup.array().of(yup.string().oneOf(projects)),
+    status: yup.string().oneOf(["Active", "Inactive"], "Tipo inválido"),
   });
 
   const {
@@ -78,8 +76,6 @@ export function UserCard(props: UserCardProps) {
 
   const onSubmit = (data: UserForm) => {
     console.log(data);
-
-    const selectedProjectsFromForm = data.projects || [];
   };
 
   return (
@@ -157,7 +153,7 @@ export function UserCard(props: UserCardProps) {
                 <label className="block">Projetos:</label>
                 <div className="flex flex-col max-h-40 overflow-y-auto">
                   {projects.map((project) => (
-                    <div key={project} className="flex flex-row  items-center">
+                    <div key={project} className="flex flex-row items-center">
                       <input
                         type="checkbox"
                         {...register("projects")}
@@ -172,6 +168,11 @@ export function UserCard(props: UserCardProps) {
                 </div>
               </div>
             </div>
+            <StatusSwitch
+              register={register("status")}
+              defaultValue={status}
+              onStatusChange={handleStatusChange}
+            />
             <div className="flex flex-row justify-around">
               <Button
                 children="Fechar"

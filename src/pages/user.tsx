@@ -63,6 +63,7 @@ const userData: UserInterface[] = [
   {
     id: 4,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -73,6 +74,7 @@ const userData: UserInterface[] = [
   {
     id: 5,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -83,6 +85,7 @@ const userData: UserInterface[] = [
   {
     id: 6,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -130,90 +133,6 @@ export function User() {
 
   const closeManageUserModal = () => {
     setManageUserModalVisibility(false);
-  };
-
-  const projects = [
-    "Create your Burger",
-    "Laughing and Learning",
-    "My Life Dashboard",
-  ];
-
-  const schema = yup.object().shape({
-    name: yup.string().required("O nome é obrigatório"),
-    email: yup
-      .string()
-      .email("Digite um e-mail válido")
-      .required("O e-mail é obrigatório"),
-    position: yup.string().required("O cargo é obrigatório"),
-    imageUrl: yup.string().url("Digite uma URL válida"),
-    salary: yup
-      .number()
-      .transform((value) =>
-        Number.isNaN(value) ? undefined : (value as number | undefined)
-      )
-      .required("O salário é obrigatório"),
-    projects: yup.array().of(yup.string().oneOf(projects)),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      projects: [],
-    },
-  });
-
-  const onSubmit = (data: UserForm) => {
-    console.log(data);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  const projects = [
-    "Create your Burger",
-    "Laughing and Learning",
-    "My Life Dashboard",
-  ];
-
-  const schema = yup.object().shape({
-    name: yup.string().required("O nome é obrigatório"),
-    email: yup
-      .string()
-      .email("Digite um e-mail válido")
-      .required("O e-mail é obrigatório"),
-    position: yup.string().required("O cargo é obrigatório"),
-    imageUrl: yup.string().url("Digite uma URL válida"),
-    salary: yup
-      .number()
-      .transform((value) =>
-        Number.isNaN(value) ? undefined : (value as number | undefined)
-      )
-      .required("O salário é obrigatório"),
-    projects: yup.array().of(yup.string().oneOf(projects)),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues: {
-      projects: [],
-    },
-  });
-
-  const onSubmit = (data: UserForm) => {
-    console.log(data);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   const projects = [

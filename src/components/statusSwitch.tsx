@@ -1,4 +1,8 @@
 import { UseFormRegisterReturn } from "react-hook-form";
+import { twJoin } from "tailwind-merge";
+import { Modal } from "./modal";
+import { Button } from "./button";
+import { useState } from "react";
 
 interface StatusSwitchProps {
   register: UseFormRegisterReturn;
@@ -6,8 +10,49 @@ interface StatusSwitchProps {
   onStatusChange: (newStatus: string) => void;
 }
 
+type StatusTypeClassProps = { isActive: string; buttonStatus: string };
+
+const SWITCH_CLASSES = "px-4 py-2 rounded-lg cursor-pointer text-white";
+
+function isActiveClass(props: StatusTypeClassProps) {
+  const { isActive, buttonStatus } = props;
+
+  return isActive === "Active"
+    ? buttonStatus === "statusActive"
+      ? "bg-ButtonBgGreen"
+      : "bg-gray-600"
+    : buttonStatus === "statusInactive"
+    ? "bg-ButtonBgRed"
+    : "bg-gray-600";
+}
+
 export function StatusSwitch(props: StatusSwitchProps) {
   const { register, defaultValue, onStatusChange } = props;
+
+  const [confirmStatusChange, setConfirmStatusChange] = useState(false);
+  const [newState, setNewState] = useState(defaultValue);
+
+  const openConfirmationModal = (newStatus: string) => {
+    if (newStatus === defaultValue) {
+      return null;
+    } else {
+      setConfirmStatusChange(true);
+      setNewState(newStatus);
+    }
+  };
+
+  const handleConfirmStatusChange = () => {
+    setConfirmStatusChange(false);
+    onStatusChange(newState);
+  };
+
+  const statusPortuguese = () => {
+    if (newState === "Active") {
+      return "Ativo";
+    } else {
+      return "Inativo";
+    }
+  };
 
   return (
     <div className="mb-4">
@@ -22,15 +67,17 @@ export function StatusSwitch(props: StatusSwitchProps) {
               id="statusActive"
               defaultChecked={defaultValue === "Active"}
               className="hidden"
-              onClick={() => onStatusChange("Active")}
+              onClick={() => openConfirmationModal("Active")}
             />
             <label
               htmlFor="statusActive"
-              className={`${
-                defaultValue === "Active"
-                  ? "bg-ButtonBgGreen text-white"
-                  : "bg-gray-600 text-white"
-              } px-4 py-2 rounded-lg cursor-pointer hover:bg-ButtonHoverBgGreen hover:text-white`}
+              className={twJoin(
+                SWITCH_CLASSES,
+                isActiveClass({
+                  isActive: defaultValue,
+                  buttonStatus: "statusActive",
+                })
+              )}
             >
               Ativo
             </label>
@@ -43,21 +90,42 @@ export function StatusSwitch(props: StatusSwitchProps) {
               id="statusInactive"
               defaultChecked={defaultValue === "Inactive"}
               className="hidden"
-              onClick={() => onStatusChange("Inactive")}
+              onClick={() => openConfirmationModal("Inactive")}
             />
             <label
               htmlFor="statusInactive"
-              className={`${
-                defaultValue === "Inactive"
-                  ? "bg-red-600 text-white"
-                  : "bg-gray-600 text-white"
-              } px-4 py-2 rounded-lg cursor-pointer hover:bg-ButtonHoverBgRed hover:text-white`}
+              className={twJoin(
+                SWITCH_CLASSES,
+                isActiveClass({
+                  isActive: defaultValue,
+                  buttonStatus: "statusInactive",
+                })
+              )}
             >
               Inativo
             </label>
           </div>
         </div>
       </div>
+      {confirmStatusChange ? (
+        <Modal closeModal={() => setConfirmStatusChange(false)}>
+          <div className="text-center">
+            <p>Você aceita alterar o status para {statusPortuguese()}</p>
+            <div className="flex justify-center mt-4">
+              <Button
+                children="Não"
+                onClick={() => setConfirmStatusChange(false)}
+                className="bg-ButtonBgRed text-white font-semibold hover:bg-ButtonHoverBgRed"
+              />
+              <Button
+                children="Sim"
+                onClick={() => handleConfirmStatusChange()}
+                className="bg-ButtonBgGreen text-white font-semibold hover:bg-ButtonHoverBgGreen ml-4"
+              />
+            </div>
+          </div>
+        </Modal>
+      ) : null}
     </div>
   );
 }

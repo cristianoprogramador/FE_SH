@@ -20,10 +20,10 @@ function isActiveClass(props: StatusTypeClassProps) {
   return isActive === "Active"
     ? buttonStatus === "statusActive"
       ? "bg-ButtonBgGreen"
-      : "bg-gray-600"
+      : "bg-gray-600 opacity-20"
     : buttonStatus === "statusInactive"
     ? "bg-ButtonBgRed"
-    : "bg-gray-600";
+    : "bg-gray-600 opacity-20";
 }
 
 export function StatusSwitch(props: StatusSwitchProps) {

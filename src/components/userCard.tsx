@@ -28,15 +28,6 @@ export function UserCard(props: UserCardProps) {
   const [manageUserModalVisibility, setManageUserModalVisibility] =
     useState(false);
 
-  const [formData, setFormData] = useState<UserForm>({
-    name: data.name,
-    email: data.email,
-    birthDate: data.birthDate,
-    position: data.position,
-    imageUrl: data.imageUrl,
-    salary: data.salary,
-    projects: data.projects ?? [],
-  });
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
   const openEditUserModal = () => {
@@ -78,8 +69,6 @@ export function UserCard(props: UserCardProps) {
 
   const onSubmit = (data: UserForm) => {
     console.log(data);
-
-    const selectedProjectsFromForm = data.projects || [];
   };
 
   return (

@@ -38,7 +38,7 @@ export function UserCard(props: UserCardProps) {
 
   const openEditUserModal = () => {
     setManageUserModalVisibility(true);
-    setSelectedProjects(data.projects || []); // Definindo os projetos selecionados
+    setSelectedProjects(data.projects || []);
   };
 
   const closeModal = () => {

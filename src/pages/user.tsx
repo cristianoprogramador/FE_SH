@@ -10,6 +10,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Button } from "@/components/button";
+import { Maybe, Query, User as UserProps } from "../__generated__/graphql";
+import { useQuery } from "@apollo/client";
+import { GET_USERS } from "@/lib/queries";
 
 export type UserForm = {
   name: string;
@@ -96,6 +99,8 @@ const userData: UserInterface[] = [
 ];
 
 export function User() {
+  const { loading, error, data } = useQuery<Query>(GET_USERS);
+  console.log("info do BD", data)
   const [usersData, setUsersData] = useState<UserInterface[]>(userData);
   const [searchBarTerm, setSearchBarTerm] = useState("");
   const [selectedStatusFilter, setSelectedStatusFilter] =

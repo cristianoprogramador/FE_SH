@@ -63,44 +63,10 @@ const userData: UserInterface[] = [
     projects: ["My Life Dashboard"],
     imageUrl: "https://i.imgur.com/v76rx7g.jpg",
   },
-  {
-    id: 4,
-    name: "Bill Gates",
-    email: "gates@email.com",
-    birthDate: "705888000000",
-    position: "Designer UI/UX",
-    salary: 4000,
-    status: "Inactive",
-    projects: ["My Life Dashboard"],
-    imageUrl: "https://i.imgur.com/v76rx7g.jpg",
-  },
-  {
-    id: 5,
-    name: "Bill Gates",
-    email: "gates@email.com",
-    birthDate: "705888000000",
-    position: "Designer UI/UX",
-    salary: 4000,
-    status: "Inactive",
-    projects: ["My Life Dashboard"],
-    imageUrl: "https://i.imgur.com/v76rx7g.jpg",
-  },
-  {
-    id: 6,
-    name: "Bill Gates",
-    email: "gates@email.com",
-    birthDate: "705888000000",
-    position: "Designer UI/UX",
-    salary: 4000,
-    status: "Inactive",
-    projects: ["My Life Dashboard"],
-    imageUrl: "https://i.imgur.com/v76rx7g.jpg",
-  },
 ];
 
 export function User() {
   const { loading, error, data } = useQuery<Query>(GET_USERS);
-  console.log("info do BD", data)
   const [usersData, setUsersData] = useState<UserInterface[]>(userData);
   const [searchBarTerm, setSearchBarTerm] = useState("");
   const [selectedStatusFilter, setSelectedStatusFilter] =
@@ -117,7 +83,12 @@ export function User() {
   };
 
   const filteredUsers = useMemo(() => {
-    return usersData.filter((user) => {
+    if (loading) return [];
+
+    const usersFromServer = data?.users || [];
+
+
+    return usersFromServer.filter((user) => {
       const lowerCaseTerm = searchBarTerm.toLowerCase();
 
       return (
@@ -177,6 +148,18 @@ export function User() {
   const onSubmit = (data: UserForm) => {
     console.log(data);
   };
+
+  console.log("info do BD", data?.users)
+  const usersFinalData = JSON.stringify(data?.users, null, 2)
+  console.log("info do BD", usersFinalData)
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Ocorreu um erro!</div>;
+  }
 
   return (
     <div className="flex flex-col h-full items-center">

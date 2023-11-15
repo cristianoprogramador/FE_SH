@@ -5,7 +5,7 @@ type ButtonProps = Pick<
   "onClick" | "className" | "children" | "type"
 >;
 
-const BUTTON_CLASSES = "py-2 px-4 rounded";
+const BUTTON_CLASSES = "py-2 px-4 rounded transition-colors duration-100";
 
 export function Button(props: ButtonProps) {
   const { children, className, ...restOfButtonProps } = props;

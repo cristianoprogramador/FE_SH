@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 interface ToolTipProps {
@@ -21,7 +21,12 @@ export function ToolTip(props: ToolTipProps) {
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    setHovered(true);
+    if (React.isValidElement(children) && children.type === "img") {
+      setHovered(false);
+    } else {
+      true;
+      setHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
@@ -39,9 +44,11 @@ export function ToolTip(props: ToolTipProps) {
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         {children}
       </div>
-      <div className={tooltipWithExternalClasses} style={BASE_STYLES}>
-        {content}
-      </div>
+      {hovered ? (
+        <div className={tooltipWithExternalClasses} style={BASE_STYLES}>
+          {content}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { Button } from "@/components/button";
 
 export type UserForm = {
   name: string;
+  email: string;
   birthDate?: string;
   position?: string;
   salary?: number;
@@ -25,6 +26,7 @@ const userData: UserInterface[] = [
   {
     id: 1,
     name: "Cristiano Silva",
+    email: "cristiano@email.com",
     birthDate: "694224000000",
     position: "Dev Frontend",
     salary: 3000,
@@ -39,6 +41,7 @@ const userData: UserInterface[] = [
   {
     id: 2,
     name: "John Carmack",
+    email: "carmack@email.com",
     birthDate: "594172800000",
     position: "Dev Backend",
     salary: 3500,
@@ -49,6 +52,7 @@ const userData: UserInterface[] = [
   {
     id: 3,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -59,6 +63,7 @@ const userData: UserInterface[] = [
   {
     id: 4,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -69,6 +74,7 @@ const userData: UserInterface[] = [
   {
     id: 5,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,
@@ -79,6 +85,7 @@ const userData: UserInterface[] = [
   {
     id: 6,
     name: "Bill Gates",
+    email: "gates@email.com",
     birthDate: "705888000000",
     position: "Designer UI/UX",
     salary: 4000,

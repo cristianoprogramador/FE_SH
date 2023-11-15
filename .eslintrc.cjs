@@ -33,6 +33,6 @@ module.exports = {
       },
     },
   ],
-  ignorePatterns: ["codegen.ts", "postcss.config.js", "tailwind.config.js", "vite.config.ts"],
+  ignorePatterns: ["codegen.ts", "postcss.config.js", "tailwind.config.js", "vite.config.ts", "__generated__/"],
 
 }

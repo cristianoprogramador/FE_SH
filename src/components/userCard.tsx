@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { UserForm } from "@/pages/user";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { StatusSwitch } from "./statusSwitch";
 
 interface UserCardProps {
   data: User;
@@ -27,12 +28,17 @@ export function UserCard(props: UserCardProps) {
   const { data } = props;
   const [manageUserModalVisibility, setManageUserModalVisibility] =
     useState(false);
+  const [status, setStatus] = useState(data.status);
+
+  const handleStatusChange = (newStatus: string) => {
+    setStatus(newStatus);
+  };
 
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
   const openEditUserModal = () => {
     setManageUserModalVisibility(true);
-    setSelectedProjects(data.projects || []); // Definindo os projetos selecionados
+    setSelectedProjects(data.projects || []);
   };
 
   const closeModal = () => {
@@ -54,6 +60,7 @@ export function UserCard(props: UserCardProps) {
       )
       .required("O salário é obrigatório"),
     projects: yup.array().of(yup.string().oneOf(projects)),
+    status: yup.string().oneOf(["Active", "Inactive"], "Tipo inválido"),
   });
 
   const {
@@ -146,7 +153,7 @@ export function UserCard(props: UserCardProps) {
                 <label className="block">Projetos:</label>
                 <div className="flex flex-col max-h-40 overflow-y-auto">
                   {projects.map((project) => (
-                    <div key={project} className="flex flex-row  items-center">
+                    <div key={project} className="flex flex-row items-center">
                       <input
                         type="checkbox"
                         {...register("projects")}
@@ -161,6 +168,11 @@ export function UserCard(props: UserCardProps) {
                 </div>
               </div>
             </div>
+            <StatusSwitch
+              register={register("status")}
+              defaultValue={status}
+              onStatusChange={handleStatusChange}
+            />
             <div className="flex flex-row justify-around">
               <Button
                 children="Fechar"
